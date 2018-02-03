@@ -1,0 +1,1 @@
+- mettre en place un systeme de double frame buffer ? qui switche 60fps ?
