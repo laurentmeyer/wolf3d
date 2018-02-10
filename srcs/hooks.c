@@ -57,7 +57,7 @@ static int main_loop(t_ram *ram)
 	while (simulation_time < real_time)
 	{
 		update_world(ram);
-		simulation_time += TIMESLICE_US;
+		simulation_time += ram->timer.delta_time_us;
 	}
 	render_scene(ram);
 	return (SUCCESS);

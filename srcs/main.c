@@ -47,7 +47,7 @@ int		init_world(t_ram *ram)
 {
 	ram->world.map_height = 480;
 	ram->world.map_width = 640;
-	ram->world.player_pos = (t_vector2){32, 32};
+	ram->world.player_pos = (t_vector2){32.0, 32.0};
 	return (SUCCESS);
 }
 

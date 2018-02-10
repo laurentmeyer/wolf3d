@@ -1,2 +1,3 @@
 - mettre en place un systeme de double frame buffer ? qui switche 60fps ?
 - a la fin du programme, liberer les images (destroy)
+- faire une minimap

@@ -1,8 +1,8 @@
 #include "wolf3d.h"
 
-void pixel_put(t_framebuf framebuf, t_vector2 pixel, unsigned int color)
+void pixel_put(t_framebuf framebuf, int x, int y, unsigned int color)
 {
-	ft_memcpy(framebuf.data_addr + (framebuf.pixels_per_line * pixel.y + pixel.x) * framebuf.chars_per_pixel, (const void *)(&color), framebuf.chars_per_pixel);
+	ft_memcpy(framebuf.data_addr + (framebuf.pixels_per_line * y + x) * framebuf.chars_per_pixel, (const void *)(&color), framebuf.chars_per_pixel);
 }
 
 int		clear_framebuf(t_display *display)
@@ -23,7 +23,7 @@ int     render_scene(t_ram *ram)
 
     clear_framebuf(&(ram->display));
 	color = mlx_get_color_value(ram->display.mlx_ptr, 0xffff);
-    pixel_put(ram->display.framebuf, ram->world.player_pos, color);
+    pixel_put(ram->display.framebuf, ram->world.player_pos.x, ram->world.player_pos.y, color);
 	display_framebuf(ram->display);
     return (SUCCESS);
 }

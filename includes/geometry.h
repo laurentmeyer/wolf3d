@@ -3,8 +3,8 @@
 
 typedef struct		s_vector2
 {
-	int				x;
-	int				y;
+	float			x;
+	float			y;
 }					t_vector2;
 
 #endif
