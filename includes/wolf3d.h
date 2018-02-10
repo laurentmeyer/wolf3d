@@ -3,36 +3,31 @@
 # include "mlx.h"
 # include "libft.h"
 # include "display.h"
+# include "world.h"
+# include "input.h"
+# include "geometry.h"
+# include "timer.h"
 
 # define ERROR -1
 # define SUCCESS 0
 # define FALSE 0
 # define TRUE !FALSE
 
-# define SIMULATION_DT 4
-# define DISPLAY_DT 16
-
-typedef struct		s_vector2
-{
-	int				x;
-	int				y;
-}					t_vector2;
-
-typedef struct		s_state
-{
-	void			*s;
-}					t_state;
+# define TIMESLICE_US 16666
 
 typedef struct		s_ram
 {
 	t_display		display;
-	t_state			state;
+	t_timer			timer;
+	t_input			input;
+	t_world			world;
 }					t_ram;
 
 int	g_verbose; //
 
 
-int		get_time_ms(void);
-int 	init_hooks(t_ram *ram);
+long long	get_time_us(void);
+int			init_hooks(t_ram *ram);
+int			render_scene(t_ram *ram);
 
 #endif

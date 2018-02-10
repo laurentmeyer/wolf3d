@@ -1,7 +1,12 @@
-#ifndef HOOKS_H
-# define HOOKS_H
+#ifndef INPUT_H
+# define INPUT_H
 
+# include "wolf3d.h"
 # include <stdlib.h>
+
+# define MAX_EVENTS 256
+# define KEYBOARD_KEY_COUNT 128
+
 # define ESC_KEY 0x35
 # define LEFT_KEY 0x7B
 # define RIGHT_KEY 0x7C
@@ -22,5 +27,14 @@
 # define MOUSEWHEEL_DOWN 4
 # define MOTIONNOTIFY 6
 # define POINTERMOTIONMASK (1L<<6)
+# define KEY_PRESS_EVENT 2
+# define KEY_RELEASE_EVENT 3
+# define KEY_PRESS_MASK (1L<<0)
+# define KEY_RELEASE_MASK (1L<<1)
+
+typedef struct	s_input
+{
+	int			keys_pressed[KEYBOARD_KEY_COUNT];
+}				t_input;
 
 #endif

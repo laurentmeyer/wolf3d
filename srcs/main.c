@@ -60,6 +60,7 @@ t_ram	*init_ram(void)
 	if (ERROR == init_display(&(ram->display)))
 		return (NULL);
 	init_world(ram);
+	ram->timer.delta_time_us = TIMESLICE_US;
 	return (ram);
 }
 

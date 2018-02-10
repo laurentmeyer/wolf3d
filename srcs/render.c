@@ -7,7 +7,7 @@ void pixel_put(t_framebuf framebuf, t_vector2 pixel, unsigned int color)
 
 int		clear_framebuf(t_display *display)
 {
-	ft_bzero(display->framebuf.data_addr, display->framebuf.size_line * display->win_height * sizeof(int));
+	ft_bzero(display->framebuf.data_addr, display->framebuf.size_line * display->win_height);
 	return (SUCCESS);
 }    
 
