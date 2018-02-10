@@ -5,7 +5,10 @@ BUILDDIR =	builds
 SOURCEDIR =	srcs
 HEADERDIR = includes
 
-SRCFILES =	main.c
+SRCFILES =	main.c			\
+			timer.c			\
+			hooks.c			\
+			render.c
 
 LIBS =		ft						\
 			mlx
