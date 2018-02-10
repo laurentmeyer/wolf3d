@@ -1,7 +1,7 @@
 CC = 		gcc
 CFLAGS =	-g -Wall -Wextra -Werror
 BINARY =	wolf3d
-BUILDDIR =	srcs
+BUILDDIR =	builds
 SOURCEDIR =	srcs
 HEADERDIR = includes
 
@@ -37,6 +37,7 @@ $(BINARY) : $(OBJECTS)
 	$(CC) $(CCHEADERS) $(CCLIBS) $(OBJECTS) $(CCFRAMEWORKS) -o $(BINARY)
 
 $(BUILDDIR)/%.o : $(SOURCEDIR)/%.c
+	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(CCHEADERS) -c $< -o $@
 
 clean:
