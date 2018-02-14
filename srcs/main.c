@@ -43,23 +43,16 @@ int		init_display(t_display *display)
 	return (SUCCESS);
 }
 
-int		init_world(t_ram *ram)
+t_ram *init_ram(void)
 {
-	ram->world.map_height = 480;
-	ram->world.map_width = 640;
-	ram->world.player_pos = (t_vector2){32.0, 32.0};
-	return (SUCCESS);
-}
-
-t_ram	*init_ram(void)
-{
-	t_ram		*ram;
+	t_ram *ram;
 
 	if (NULL == (ram = (t_ram *)malloc(sizeof(t_ram))))
-		return (NULL);//handle error
+		return (NULL); //handle error
 	if (ERROR == init_display(&(ram->display)))
 		return (NULL);
 	init_world(ram);
+	print_map(ram);
 	ram->timer.delta_time_us = TIMESLICE_US;
 	return (ram);
 }

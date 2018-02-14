@@ -8,7 +8,8 @@ HEADERDIR = includes
 SRCFILES =	main.c			\
 			timer.c			\
 			hooks.c			\
-			render.c
+			render.c		\
+			world.c
 
 LIBS =		ft						\
 			mlx

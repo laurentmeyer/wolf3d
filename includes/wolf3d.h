@@ -26,8 +26,11 @@ typedef struct		s_ram
 int	g_verbose; //
 
 
-long long	get_time_us(void);
-int			init_hooks(t_ram *ram);
-int			render_scene(t_ram *ram);
+int					render_scene(t_ram *ram);
+int					init_world(t_ram *ram);
+void				print_map(t_ram *ram); //
+int					init_hooks(t_ram *ram);
+long long			get_time_us(void);
+
 
 #endif
