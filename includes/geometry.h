@@ -1,10 +1,13 @@
 #ifndef GEOMETRY_H
 # define GEOMETRY_H
 
-typedef struct		s_vector2
+# define ANGLES	360
+# define PI 3.14159265
+
+typedef struct		s_v2
 {
 	float			x;
 	float			y;
-}					t_vector2;
+}					t_v2;
 
 #endif

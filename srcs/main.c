@@ -43,6 +43,19 @@ int		init_display(t_display *display)
 	return (SUCCESS);
 }
 
+int		init_assets(t_ram *ram)
+{
+	t_texture	*tex;
+
+	tex = &(ram->assets.textures.wall);
+	if (NULL == (tex->lit = (mlx_xpm_file_to_image(ram->display.mlx_ptr,
+"assets/wall_lit.xpm", &(tex->width), &(tex->length)))))
+	{
+		return (ERROR);
+	}
+	return (SUCCESS);
+}
+
 t_ram *init_ram(void)
 {
 	t_ram *ram;
@@ -51,8 +64,9 @@ t_ram *init_ram(void)
 		return (NULL); //handle error
 	if (ERROR == init_display(&(ram->display)))
 		return (NULL);
+	init_assets(ram);
 	init_world(ram);
-	print_map(ram);
+	print_map(ram); //
 	ram->timer.delta_time_us = TIMESLICE_US;
 	return (ram);
 }

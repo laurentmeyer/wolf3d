@@ -68,6 +68,7 @@ int init_world(t_ram *ram)
 {
 	if (ERROR == init_map(ram))
 		return (ERROR);
-	ram->world.player_pos = (t_vector2){32.0, 32.0};
+	ram->world.player.pos = (t_v2){32.0, 32.0};
+	ram->world.player.angle = 0;
 	return (SUCCESS);
 }
