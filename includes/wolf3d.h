@@ -19,18 +19,29 @@
 
 typedef struct		s_ram
 {
-	t_display		display;
-	t_timer			timer;
-	t_input			input;
-	t_world			world;
-	t_assets		assets;
+	t_display		*display;
+	t_timer			*timer;
+	t_input			*input;
+	t_world			*world;
+	t_assets		*assets;
 }					t_ram;
 
-int					render_scene(t_ram *ram);
-int					init_world(t_ram *ram);
+t_ram				*init_ram(void);
+void				free_ram(t_ram *ram);
+void				init_assets(t_ram *ram);
+void				free_assets(t_assets *assets);
+void				init_display(t_ram *ram);
+void				free_display(t_display *display);
+void				init_input(t_ram *ram);
+void				free_input(t_input *input);
+void				init_timer(t_ram *ram);
+void				free_timer(t_timer *timer);
+void				init_world(t_ram *ram);
+void				free_world(t_world *world);
 void				print_map(t_ram *ram); //
 int					init_hooks(t_ram *ram);
-long long			get_time_us(void);
+int					render_scene(t_ram *ram);
+void				exit_message(t_ram *ram, int exit_code, char *message);
 
 
 #endif

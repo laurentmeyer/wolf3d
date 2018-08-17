@@ -13,6 +13,8 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "int_array.h"
+# include "lds.h"
 # include <string.h>
 # include <wchar.h>
 # define MININT -2147483648
@@ -76,6 +78,7 @@ char					*ft_strsub(char const *s,
 char					*ft_strjoin(char const *s1, char const *s2);
 char					*ft_strtrim(char const *s);
 char					**ft_strsplit(char const *s, char c);
+void 					ft_free_strsplit(char ***to_free);
 char					*ft_itoa(int n);
 void					ft_putchar(char c);
 void					ft_putstr(char const *s);
@@ -103,7 +106,7 @@ char					*ft_itoa_base(int value, int base);
 void					ft_strtolower(char *s);
 char					*ft_strlast(char *s);
 char					*ft_wcrtoutf(wchar_t w);
-int						ft_valid_int_str(char *s);
+int						ft_valid_int_str(char *s, int strict);
 int						gnlite(const int fd, char **line);
 int						ft_getopt(int argc, char **argv,
 										const char *optstring);
@@ -113,6 +116,9 @@ void					ft_lstsort(t_list **alst, t_listcmp *f);
 void					ft_lstappend(t_list **alst, t_list *to_append);
 void					ft_lstrev(t_list **alst);
 char					*ft_basename(char *path);
+char 					**ft_argsplit(int *aac, char **av);
 int						ft_intlen(int n);
+void					sort_int_array(t_int_array *array);
+void					ft_swap_int(int *a, int *b);
 
 #endif

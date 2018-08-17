@@ -1,6 +1,7 @@
 #ifndef WORLD_H
 # define WORLD_H
 
+# include "wolf3d.h"
 # include "geometry.h"
 # include "player.h"
 
@@ -9,7 +10,7 @@
 
 typedef struct		s_world
 {
-	char			walls[MAX_MAP_WIDTH][MAX_MAP_HEIGHT];
+	char			*map;
 	t_player		player;
 }					t_world;
 

@@ -21,7 +21,7 @@
 
 typedef struct	s_input
 {
-	int			keys_pressed[KEYBOARD_KEY_COUNT];
+	int			*keys_pressed;
 }				t_input;
 
 #endif

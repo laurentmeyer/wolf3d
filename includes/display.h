@@ -1,7 +1,13 @@
 #ifndef DISPLAY_H
 # define DISPLAY_H
 
-typedef	struct		s_framebuf
+# include "wolf3d.h"
+
+# define WIN_H 480
+# define WIN_W 640
+# define WIN_NAME "wolf3d"
+
+typedef struct		s_image
 {
 	void			*img_ptr;
 	char			*data_addr;
@@ -10,18 +16,24 @@ typedef	struct		s_framebuf
 	int				endian;
 	int				chars_per_pixel;
 	int				pixels_per_line;
-}					t_framebuf;
+	int				w;
+	int				h;
+}					t_image;
 
-typedef void		*t_window;
+typedef struct		s_window
+{
+	void			*win_ptr;
+	int				w;
+	int				h;
+	char			*name;
+}					t_window;
 
 typedef struct		s_display
 {
 
 	void			*mlx_ptr;
-	t_window		window;
-	int				win_width;
-	int				win_height;
-	t_framebuf		framebuf;
+	t_window		*win;
+	t_image			*img;
 }					t_display;
 
 #endif

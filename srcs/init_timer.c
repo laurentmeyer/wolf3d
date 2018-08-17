@@ -1,0 +1,14 @@
+#include "wolf3d.h"
+#include "timer.h"
+
+void	init_timer(t_ram *ram)
+{
+	if (NULL == (ram->timer = (t_timer *)malloc(sizeof(t_timer))))
+		exit_message(ram, ERROR, "Could not allocate timer\n");
+	ram->timer->delta_time_us = TIMESLICE_US;
+}
+
+void	free_timer(t_timer *timer)
+{
+	free(timer);
+}

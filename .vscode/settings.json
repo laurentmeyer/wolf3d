@@ -1,0 +1,20 @@
+{
+    "editor.rulers": [
+        80
+    ],
+	"files.associations": {
+		"wolf3d.h": "c",
+		"time.h": "c",
+		"hooks.h": "c",
+		"unistd.h": "c",
+		"input.h": "c",
+		"ft_printf.h": "c",
+		"mlx.h": "c",
+		"fcntl.h": "c",
+		"ram.h": "c",
+		"world.h": "c",
+		"assets.h": "c",
+		"display.h": "c",
+		"geometry.h": "c"
+	}
+}

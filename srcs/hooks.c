@@ -7,13 +7,13 @@
 
 static int key_press(int keycode, t_ram *ram)
 {
-	ram->input.keys_pressed[keycode] = 1;
+	ram->input->keys_pressed[keycode] = 1;
 	return (1);
 }
 
 static int key_release(int keycode, t_ram *ram)
 {
-	ram->input.keys_pressed[keycode] = 0;
+	ram->input->keys_pressed[keycode] = 0;
 	return (1);
 }
 
@@ -42,18 +42,18 @@ int apply_user_input(t_ram *ram)
 	const float	straight_step = 30.0 / 60;
 	const float	angle = 30.0 / 60;
 
-	k = ram->input.keys_pressed;
-	player = &(ram->world.player);
+	k = ram->input->keys_pressed;
+	player = &(ram->world->player);
 	if (k[ESC_KEY])
-		exit(0); // gérer mieux
+		exit_message(ram, 0, NULL);
 	if (k[UP_KEY])
 		translate(player, (t_v2){straight_step, 0});
 	if (k[DOWN_KEY])
 		translate(player, (t_v2){-straight_step, 0});
 	if (k[RIGHT_KEY])
-		rotate(player, -angle);
-	if (k[LEFT_KEY])
 		rotate(player, angle);
+	if (k[LEFT_KEY])
+		rotate(player, -angle);
 	// faire varier en fonction de deltatime
 	return (SUCCESS);
 }
@@ -73,7 +73,7 @@ static int main_loop(t_ram *ram)
 	while (simulation_time < real_time)
 	{
 		update_world(ram);
-		simulation_time += ram->timer.delta_time_us;
+		simulation_time += ram->timer->delta_time_us;
 	}
 	render_scene(ram);
 	return (SUCCESS);
@@ -81,8 +81,8 @@ static int main_loop(t_ram *ram)
 
 int init_hooks(t_ram *ram)
 {
-	mlx_hook(ram->display.window, KEY_PRESS_EVENT, KEY_PRESS_MASK, &key_press, ram);
-	mlx_hook(ram->display.window, KEY_RELEASE_EVENT, KEY_RELEASE_MASK, &key_release, ram);
-	mlx_loop_hook(ram->display.mlx_ptr, &main_loop, ram);
+	mlx_hook(ram->display->win->win_ptr, KEY_PRESS_EVENT, KEY_PRESS_MASK, &key_press, ram);
+	mlx_hook(ram->display->win->win_ptr, KEY_RELEASE_EVENT, KEY_RELEASE_MASK, &key_release, ram);
+	mlx_loop_hook(ram->display->mlx_ptr, &main_loop, ram);
 	return (SUCCESS);
 }
