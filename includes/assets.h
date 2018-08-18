@@ -23,13 +23,12 @@ typedef int		*t_texture;
 
 typedef struct	s_assets
 {
-	double		*sintable;
 	t_texture	*textures;
-	void		*tex_img;
-	char		*tex_addr;
-	int			bpp;
-	int			size_line;
-	int			endian;
+	// void		*tex_img;
+	// char		*tex_addr;
+	// int			bpp;
+	// int			size_line;
+	// int			endian;
 }				t_assets;
 
 #endif

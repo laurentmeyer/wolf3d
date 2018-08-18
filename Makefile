@@ -5,17 +5,24 @@ BUILDDIR =	builds
 SOURCEDIR =	srcs
 HEADERDIR = includes
 
-SRCFILES =	main.c			\
+SRCFILES =					\
+			display.c		\
+			exit.c			\
 			init_assets.c	\
 			init_display.c	\
 			init_input.c	\
 			init_ram.c		\
+			init_render.c	\
 			init_timer.c	\
 			init_world.c	\
-			exit.c			\
-			timer.c			\
-			hooks.c			\
+			input.c			\
+			main_loop.c		\
+			main.c			\
+			math.c			\
+			raycast.c		\
 			render.c		\
+			timer.c			\
+			transform.c		\
 			world.c
 
 LIBS =		ft						\

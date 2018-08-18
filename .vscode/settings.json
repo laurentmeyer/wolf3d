@@ -15,6 +15,12 @@
 		"world.h": "c",
 		"assets.h": "c",
 		"display.h": "c",
-		"geometry.h": "c"
+		"geometry.h": "c",
+		"math.h": "c",
+		"player.h": "c",
+		"ft_math.h": "c",
+		"libft.h": "c",
+		"transform.h": "c",
+		"raycast.h": "c"
 	}
 }

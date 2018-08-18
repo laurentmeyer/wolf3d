@@ -1,7 +1,6 @@
 #ifndef INPUT_H
 # define INPUT_H
 
-# include "wolf3d.h"
 # include <stdlib.h>
 
 # define MAX_EVENTS 256

@@ -1,9 +1,6 @@
 #ifndef GEOMETRY_H
 # define GEOMETRY_H
 
-# define ANGLES	360
-# define PI 3.14159265
-
 typedef struct		s_v2i
 {
 	int				x;

@@ -3,20 +3,6 @@
 #include "display.h"
 #include "geometry.h"
 
-void	init_sintable(t_ram *ram)
-{
-	int			i;
-
-	if (NULL == (ram->assets->sintable = (double *)malloc((ANGLES + ANGLES / 4) * sizeof(double))))
-		exit_message(ram, ERROR, "Could not initialize sin table\n");
-	i = 0;
-	while (i < ANGLES + ANGLES / 4)
-	{
-		(ram->assets->sintable)[i] = sin(i);
-		i++;
-	}
-}
-
 /*
 ** les textures sont stockées colonne par colonne et non ligne par ligne
 */
@@ -72,7 +58,6 @@ void		init_assets(t_ram *ram)
 	if (NULL == (ram->assets = (t_assets *)malloc(sizeof(t_assets))))
 		exit_message(ram, ERROR, "Could not initialize assets\n");
 	ft_bzero(ram->assets, sizeof(t_assets));
-	init_sintable(ram);
 	init_textures(ram);
 }
 
@@ -91,7 +76,5 @@ void	free_assets(t_assets *assets)
 		}
 		free(assets->textures);
 	}
-	if (NULL != assets->sintable)
-		free(assets->sintable);
 	free(assets);
 }

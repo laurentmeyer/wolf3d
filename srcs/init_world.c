@@ -10,9 +10,9 @@ void		fill_map(t_ram *ram, int y, char *line)
 	while (x < MAX_MAP_WIDTH && '\0' != line[x])
 	{
 		if (0 == x || MAX_MAP_WIDTH - 1 == x || 0 == y || MAX_MAP_HEIGHT - 1 == y)
-			ram->world->map[x + MAX_MAP_WIDTH * y] = 1;
+			ram->world->map[x + MAX_MAP_WIDTH * y] = MAP_WALL;
 		else
-			ram->world->map[x + MAX_MAP_WIDTH * y] = (line[x] == 'W') ? 1 : 0;
+			ram->world->map[x + MAX_MAP_WIDTH * y] = (line[x] == 'W') ? MAP_WALL : MAP_EMPTY;
 		++x;
 	}
 }
@@ -46,11 +46,11 @@ void	init_map(t_ram *ram)
 void init_world(t_ram *ram)
 {
 	if (NULL == (ram->world = (t_world *)malloc(sizeof(t_world))))
-		exit_message(ram, ERROR, "Could not initialize world\n");
+		exit_message(ram, ERROR, "Could not allocate world\n");
 	ft_bzero(ram->world, sizeof(t_world));
 	init_map(ram);
-	ram->world->player.pos = (t_v2){32.0, 32.0};
-	ram->world->player.angle = 0;
+	ram->world->player.pos = (t_v2){3.0, 2.0};
+	ram->world->player.degrees = 0.0;
 }
 
 void	free_world(t_world *world)

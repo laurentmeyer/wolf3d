@@ -11,6 +11,7 @@ t_ram	*init_ram(void)
 	init_assets(ram);
 	init_world(ram);
 	init_input(ram);
+	init_render(ram);
 	init_hooks(ram);
 	// print_map(ram); //
 	init_timer(ram);
@@ -27,6 +28,8 @@ void	free_ram(t_ram *ram)
 		free_assets(ram->assets);
 	if (NULL != ram->timer)
 		free_timer(ram->timer);
+	if (NULL != ram->render)
+		free_render(ram->render);
 	if (NULL != ram->world)
 		free_world(ram->world);
 	free(ram);

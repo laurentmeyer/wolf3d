@@ -1,8 +1,6 @@
 #ifndef DISPLAY_H
 # define DISPLAY_H
 
-# include "wolf3d.h"
-
 # define WIN_H 480
 # define WIN_W 640
 # define WIN_NAME "wolf3d"
