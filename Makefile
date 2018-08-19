@@ -16,6 +16,7 @@ SRCFILES =					\
 			init_timer.c	\
 			init_world.c	\
 			input.c			\
+			line.c			\
 			main_loop.c		\
 			main.c			\
 			math.c			\

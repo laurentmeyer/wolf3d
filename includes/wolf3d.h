@@ -20,6 +20,7 @@
 
 # define TIMESLICE_US 16666
 # define FOV 40
+# define MMAP_PXPM 20
 
 typedef struct		s_ram
 {
@@ -52,6 +53,7 @@ void				apply_user_input(t_ram *ram);
 void 				pixel_put(t_image *img, int x, int y, unsigned int color);
 int					render_scene(t_ram *ram);
 t_hit				raycast(t_ram *ram, t_ray ray);
+void				trace_line(t_image *img, t_v2i a, t_v2i b, int color);
 void				exit_message(t_ram *ram, int exit_code, char *message);
 
 

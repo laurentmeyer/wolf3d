@@ -48,6 +48,7 @@ static int	read_buf(char buf[BUFF_SIZE + 2], int fd, char **start)
 ** if (next || (next = start + ft_strlen(start)) != buf + BUFF_SIZE)
 ** mais retourne des strings vides, pb pour push swap. Je ne sais plus pourquoi
 ** j'avais mis cette ligne ...
+** il est possible que ce soit pour renvoyer 0 en cas de fin de lecture ?
 */
 
 int gnlite(const int fd, char **line)
@@ -66,7 +67,7 @@ int gnlite(const int fd, char **line)
 		if ((next = ft_strchr(start, '\n')))
 			*next = '\0';
 		*line = append(*line, start);
-		if (next)
+		if (next || (next = start + ft_strlen(start)) != buf + BUFF_SIZE)
 		{
 			start = next + 1;
 			return (1);

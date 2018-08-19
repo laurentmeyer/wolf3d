@@ -13,6 +13,7 @@ typedef t_transform		t_ray;
 
 typedef struct			s_hit
 {
+	t_v2				pos;
 	float				distance;
 	int					tex_id;
 	float				tex_percent;

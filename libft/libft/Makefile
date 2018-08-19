@@ -91,7 +91,9 @@ SRCFILES =	ft_memset.c			\
 			sort_int_array.c	\
 			ft_swap_int.c		\
 			int_array.c			\
-			lds.c
+			lds.c				\
+			ft_mlx_window.c		\
+			ft_mlx_image.c
 
 CCHEADERS = -I./$(HEADERDIR)		\
 			-I../libft/includes		\

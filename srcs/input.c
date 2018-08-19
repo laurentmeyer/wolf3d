@@ -40,8 +40,8 @@ void	 apply_user_input(t_ram *ram)
 
 int init_hooks(t_ram *ram)
 {
-	mlx_hook(ram->display->win->win_ptr, KEY_PRESS_EVENT, KEY_PRESS_MASK, &key_press, ram);
-	mlx_hook(ram->display->win->win_ptr, KEY_RELEASE_EVENT, KEY_RELEASE_MASK, &key_release, ram);
+	mlx_hook(ram->display->fps_win->win_ptr, KEY_PRESS_EVENT, KEY_PRESS_MASK, &key_press, ram);
+	mlx_hook(ram->display->fps_win->win_ptr, KEY_RELEASE_EVENT, KEY_RELEASE_MASK, &key_release, ram);
 	mlx_loop_hook(ram->display->mlx_ptr, &main_loop, ram);
 	return (SUCCESS);
 }

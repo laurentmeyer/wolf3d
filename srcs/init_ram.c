@@ -7,9 +7,9 @@ t_ram	*init_ram(void)
 	if (NULL == (ram = (t_ram *)malloc(sizeof(t_ram))))
 		exit_message(ram, ERROR, "Could not initialize RAM\n");
 	ft_bzero(ram, sizeof(t_ram));
+	init_world(ram);
 	init_display(ram);
 	init_assets(ram);
-	init_world(ram);
 	init_input(ram);
 	init_render(ram);
 	init_hooks(ram);
@@ -20,8 +20,6 @@ t_ram	*init_ram(void)
 
 void	free_ram(t_ram *ram)
 {
-	if (NULL != ram->display)
-		free_display(ram->display);
 	if (NULL != ram->input)
 		free_input(ram->input);
 	if (NULL != ram->assets)
@@ -32,5 +30,7 @@ void	free_ram(t_ram *ram)
 		free_render(ram->render);
 	if (NULL != ram->world)
 		free_world(ram->world);
+	if (NULL != ram->display)
+		free_display(ram->display);
 	free(ram);
 }

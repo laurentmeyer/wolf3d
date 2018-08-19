@@ -53,12 +53,41 @@ void	init_textures(t_ram *ram)
 	mlx_destroy_image(ram->display->mlx_ptr, img.img_ptr);
 }
 
+void	init_map_layout(t_ram *ram)
+{
+	int		i;
+	int		j;
+	int		c;
+
+	if (NULL == (ram->assets->map_layout = (int *)malloc(MMAP_PXPM * MMAP_PXPM *
+		ram->world->map_h * ram->world->map_w * sizeof(int))))
+		exit_message(ram, ERROR, "Could not initialize minimap template\n");
+	ft_bzero(ram->assets->map_layout, MMAP_PXPM * MMAP_PXPM *
+		ram->world->map_h * ram->world->map_w * sizeof(int));
+	i = 0;
+	while (i < ram->world->map_h * MMAP_PXPM)
+	{
+		j = 0;
+		while (j < ram->world->map_w * MMAP_PXPM)
+		{
+			c = (ram->world->map)[ram->world->map_w * (i / MMAP_PXPM) + (j / MMAP_PXPM)];
+			if (MAP_WALL == c)
+				(ram->assets->map_layout)[ram->world->map_w * i * MMAP_PXPM + j] = 0x707070;
+			else if (MAP_EMPTY == c)
+				(ram->assets->map_layout)[ram->world->map_w * i * MMAP_PXPM + j] = 0x383838;
+			j++;
+		}
+		i++;
+	}
+}
+
 void		init_assets(t_ram *ram)
 {
 	if (NULL == (ram->assets = (t_assets *)malloc(sizeof(t_assets))))
 		exit_message(ram, ERROR, "Could not initialize assets\n");
 	ft_bzero(ram->assets, sizeof(t_assets));
 	init_textures(ram);
+	init_map_layout(ram);
 }
 
 void	free_assets(t_assets *assets)
@@ -76,5 +105,7 @@ void	free_assets(t_assets *assets)
 		}
 		free(assets->textures);
 	}
+	if (NULL != assets->map_layout)
+		free(assets->map_layout);
 	free(assets);
 }

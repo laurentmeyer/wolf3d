@@ -24,11 +24,7 @@ typedef int		*t_texture;
 typedef struct	s_assets
 {
 	t_texture	*textures;
-	// void		*tex_img;
-	// char		*tex_addr;
-	// int			bpp;
-	// int			size_line;
-	// int			endian;
+	int			*map_layout;
 }				t_assets;
 
 #endif
