@@ -17,17 +17,17 @@ t_texture		init_texture(t_ram *ram, t_image *img, int id)
 		exit_message(ram, ERROR, "Could not allocate texture\n");
 	ft_bzero(ret, TEX_WIDTH * TEX_HEIGHT * sizeof(int));
 	cur = orig;
-	while (cur.y - orig.y < TEX_WIDTH)
+	while (cur.x - orig.x < TEX_WIDTH)
 	{
-		cur.x = orig.x;
-		while (cur.x - orig.x < TEX_HEIGHT)
+		cur.y = orig.y;
+		while (cur.y - orig.y < TEX_HEIGHT)
 		{
-			ft_memcpy(ret + TEX_WIDTH * (cur.y - orig.y) + (cur.x - orig.x),
+			ft_memcpy(ret + TEX_WIDTH * (cur.x - orig.x) + (cur.y - orig.y),
 				img->data_addr + img->chars_per_pixel *
 				(img->pixels_per_line * cur.y + cur.x), img->chars_per_pixel);
-			(cur.x)++;
+			(cur.y)++;
 		}
-		(cur.y)++;
+		(cur.x)++;
 	}
 	return (ret);
 }

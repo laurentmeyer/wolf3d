@@ -3,55 +3,53 @@
 #include "raycast.h"
 #include "ft_math.h"
 
-float			projected_distance(t_transform player, t_v2 pos)
+float			projected_distance(t_ram *ram, t_v2 pos)
 {
-	return (abs_float(pos.x - player.pos.x) * cos(player.degrees * DEG_TO_RAD)
-		- abs_float(pos.y - player.pos.y) * sin(player.degrees * DEG_TO_RAD));
+	return ((pos.x - ram->world->player.pos.x) * cos(ram->world->player.degrees * DEG_TO_RAD)
+		- (pos.y - ram->world->player.pos.y) * sin(ram->world->player.degrees * DEG_TO_RAD));
 }
 
-static t_hit	raycast_horizontal_south(t_ram *ram, t_ray ray)
+t_hit	raycast_horizontal_south(t_ram *ram, t_ray ray)
 {
-	float	adj;
+	float	opp;
 	t_hit	hit;
 
-	adj = (int)(ray.pos.x) + 1.0 - ray.pos.x;
-	hit.pos.x = ray.pos.x + adj * tan((90.0 - ray.degrees) * DEG_TO_RAD);
-	hit.pos.y = (int)(ray.pos.y);
-	while (hit.pos.y + 1.0 < ram->world->map_h && hit.pos.x >= 0.0 && hit.pos.x < (float)ram->world->map_w
-		&& MAP_EMPTY == (hit.tex_id = (ram->world->map)[(int)(hit.pos.y + 1.0) * ram->world->map_w + (int)(hit.pos.x)]))
+	opp = (int)(ray.pos.y) + 1.0 - ray.pos.y;
+	hit.pos.x = ray.pos.x - opp / tan(ray.degrees * DEG_TO_RAD);
+	hit.pos.y = (int)(ray.pos.y + 1.0);
+	hit.tex_id = MAP_EMPTY;
+	while (hit.pos.x >= 0.0 && hit.pos.x < (float)ram->world->map_w
+		&& MAP_EMPTY == (hit.tex_id = (ram->world->map)[(int)(hit.pos.y) * ram->world->map_w + (int)(hit.pos.x)]))
 	{
 		hit.pos.x -= tan((90.0 - ray.degrees) * DEG_TO_RAD);
 		hit.pos.y += 1.0;
 	}
-	if (MAP_EMPTY != hit.tex_id)
-		hit.tex_id += 1;
-	hit.distance = projected_distance(ray, hit.pos);
+	hit.distance = projected_distance(ram, hit.pos);
 	hit.tex_percent = (int)(hit.pos.x + 1.0) - hit.pos.x;
 	return (hit);
 }
 
-static t_hit	raycast_horizontal_north(t_ram *ram, t_ray ray)
+t_hit	raycast_horizontal_north(t_ram *ram, t_ray ray)
 {
-	float	adj;
+	float	opp;
 	t_hit	hit;
 
-	adj = ray.pos.x - (int)(ray.pos.x);
-	hit.pos.x = ray.pos.x - adj * tan((90.0 - ray.degrees) * DEG_TO_RAD);
+	opp = ray.pos.y - (int)(ray.pos.y);
+	hit.pos.x = ray.pos.x + opp / tan(ray.degrees * DEG_TO_RAD);
 	hit.pos.y = (int)(ray.pos.y);
+	hit.tex_id = MAP_EMPTY;
 	while (hit.pos.y - 1.0 >= 0.0 && hit.pos.x >= 0.0 && hit.pos.x < (float)ram->world->map_w
 		&& MAP_EMPTY == (hit.tex_id = (ram->world->map)[(int)(hit.pos.y - 1.0) * ram->world->map_w + (int)(hit.pos.x)]))
 	{
 		hit.pos.x += tan((90.0 - ray.degrees) * DEG_TO_RAD);
 		hit.pos.y -= 1.0;
 	}
-	if (MAP_EMPTY != hit.tex_id)
-		hit.tex_id += 1;
-	hit.distance = projected_distance(ray, hit.pos);
+	hit.distance = projected_distance(ram, hit.pos);
 	hit.tex_percent = hit.pos.x - (int)(hit.pos.x);
 	return (hit);
 }
 
-static t_hit	raycast_vertical_east(t_ram *ram, t_ray ray)
+t_hit	raycast_vertical_east(t_ram *ram, t_ray ray)
 {
 	float	adj;
 	t_hit	hit;
@@ -60,20 +58,20 @@ static t_hit	raycast_vertical_east(t_ram *ram, t_ray ray)
 	hit.pos.x = (float)((int)(ray.pos.x) + 1);
 	hit.pos.y = ray.pos.y - adj * tan(ray.degrees * DEG_TO_RAD);
 	hit.tex_id = MAP_EMPTY;
-	while (hit.pos.x + 1.0 < (float)ram->world->map_w && hit.pos.y >= 0.0 && hit.pos.y < (float)ram->world->map_h
-		&& MAP_EMPTY == (hit.tex_id = (ram->world->map)[(int)(hit.pos.y) * ram->world->map_w + (int)(hit.pos.x + 1.0)]))
+	while (hit.pos.y >= 0.0 && hit.pos.y < (float)ram->world->map_h
+		&& MAP_EMPTY == (hit.tex_id = (ram->world->map)[(int)(hit.pos.y) * ram->world->map_w + (int)(hit.pos.x)]))
 	{
 		hit.pos.x += 1.0;
 		hit.pos.y -= tan(ray.degrees * DEG_TO_RAD);
 	}
 	if (MAP_EMPTY != hit.tex_id)
 		hit.tex_id += 1;
-	hit.distance = projected_distance(ray, hit.pos);
-	hit.tex_percent = (int)(hit.pos.y) + 1.0 - hit.pos.y;
+	hit.distance = projected_distance(ram, hit.pos);
+	hit.tex_percent = hit.pos.y - (int)(hit.pos.y);
 	return (hit);
 }
 
-static t_hit	raycast_vertical_west(t_ram *ram, t_ray ray)
+t_hit	raycast_vertical_west(t_ram *ram, t_ray ray)
 {
 	float	adj;
 	t_hit	hit;
@@ -90,8 +88,9 @@ static t_hit	raycast_vertical_west(t_ram *ram, t_ray ray)
 	}
 	if (MAP_EMPTY != hit.tex_id)
 		hit.tex_id += 1;
-	hit.distance = projected_distance(ray, hit.pos);
-	hit.tex_percent = hit.pos.y - (int)(hit.pos.y);
+	hit.distance = projected_distance(ram, hit.pos);
+	// hit.tex_percent = 1.0 - (hit.pos.y - (int)(hit.pos.y));
+	hit.tex_percent = (int)(hit.pos.y) + 1.0 - hit.pos.y;
 	return (hit);
 }
 

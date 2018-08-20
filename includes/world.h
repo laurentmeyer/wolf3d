@@ -6,7 +6,7 @@
 # include "geometry.h"
 
 # define MAP_EMPTY -2
-# define MAP_WALL 14
+# define MAP_WALL 20 //14
 
 typedef struct		s_world
 {
