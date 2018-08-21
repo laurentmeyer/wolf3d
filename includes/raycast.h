@@ -3,11 +3,13 @@
 
 # include "wolf3d.h"
 
-enum					e_direction
+typedef enum			e_direction
 {
-	E_VERTICAL,
-	E_HORIZONTAL
-};
+	E_HIT_NORTH,
+	E_HIT_SOUTH,
+	E_HIT_EAST,
+	E_HIT_WEST
+}						t_direction;
 
 typedef t_transform		t_ray;
 
@@ -17,6 +19,7 @@ typedef struct			s_hit
 	float				distance;
 	int					tex_id;
 	float				tex_percent;
+	t_direction			direction;
 }						t_hit;
 
 #endif

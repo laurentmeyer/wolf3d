@@ -9,7 +9,7 @@ typedef struct	s_transform
 	float		degrees;
 }				t_transform;
 
-void			translate(t_transform *transform, t_v2 v);
-void			rotate(t_transform *transform, float angle);
+t_transform		translate(t_transform t, t_v2 v);
+void			rotate(t_transform *transform, float degrees);
 
 #endif

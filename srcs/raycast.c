@@ -26,6 +26,7 @@ t_hit	raycast_horizontal_south(t_ram *ram, t_ray ray)
 	}
 	hit.distance = projected_distance(ram, hit.pos);
 	hit.tex_percent = (int)(hit.pos.x + 1.0) - hit.pos.x;
+	hit.direction = E_HIT_SOUTH;
 	return (hit);
 }
 
@@ -46,6 +47,7 @@ t_hit	raycast_horizontal_north(t_ram *ram, t_ray ray)
 	}
 	hit.distance = projected_distance(ram, hit.pos);
 	hit.tex_percent = hit.pos.x - (int)(hit.pos.x);
+	hit.direction = E_HIT_NORTH;
 	return (hit);
 }
 
@@ -67,6 +69,7 @@ t_hit	raycast_vertical_east(t_ram *ram, t_ray ray)
 	if (MAP_EMPTY != hit.tex_id)
 		hit.tex_id += 1;
 	hit.distance = projected_distance(ram, hit.pos);
+	hit.direction = E_HIT_EAST;
 	hit.tex_percent = hit.pos.y - (int)(hit.pos.y);
 	return (hit);
 }
@@ -89,7 +92,7 @@ t_hit	raycast_vertical_west(t_ram *ram, t_ray ray)
 	if (MAP_EMPTY != hit.tex_id)
 		hit.tex_id += 1;
 	hit.distance = projected_distance(ram, hit.pos);
-	// hit.tex_percent = 1.0 - (hit.pos.y - (int)(hit.pos.y));
+	hit.direction = E_HIT_WEST;
 	hit.tex_percent = (int)(hit.pos.y) + 1.0 - hit.pos.y;
 	return (hit);
 }

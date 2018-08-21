@@ -5,8 +5,15 @@
 # include "transform.h"
 # include "geometry.h"
 
-# define MAP_EMPTY -2
-# define MAP_WALL 20 //14
+# define TEX_EMPTY -2
+# define TEX_WALL_STONE 0
+# define TEX_FLAG_NAZI 4
+# define TEX_HITLER_STONE 6
+# define TEX_PRISON_EMPTY 8
+# define TEX_PRISON_DEAD 12
+# define TEX_WALL_BLUE 14
+# define TEX_HITLER_WOOD 20
+# define TEX_WALL_WOOD 22
 
 typedef struct		s_world
 {

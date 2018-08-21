@@ -2,8 +2,6 @@
 #include "ft_math.h"
 #include <math.h>
 
-# define H_FOV 40.0
-
 void		raycast_straight_col(t_ram *ram)
 {
 	t_ray ray;
@@ -19,23 +17,6 @@ void		raycast_straight_col(t_ram *ram)
 	point = (t_v2i){(int)(hit.pos.x * MMAP_PXPM),
 					(int)(hit.pos.y * MMAP_PXPM)};
 	trace_line(ram->display->map_img, player, point, 0xFF);
-}
-
-void raycast_each_col(t_ram *ram)
-{
-	int i;
-	t_ray ray;
-
-	ft_bzero(ram->render->hits, ram->display->fps_img->w * sizeof(t_hit));
-	i = 0;
-	while (i < ram->display->fps_img->w)
-	{
-		ray.pos = ram->world->player.pos;
-		ray.degrees = normalize_degrees(ram->world->player.degrees -
-										((float)i * 2.0 / ram->display->fps_img->w - 1.0) * H_FOV / 2.0);
-		(ram->render->hits)[i] = raycast(ram, ray);
-		++i;
-	}
 }
 
 void scale_tex(int height, int *dst, int *src)
@@ -79,6 +60,23 @@ void render_each_col(t_ram *ram, t_image *img)
 	}
 }
 
+void raycast_each_col(t_ram *ram)
+{
+	int i;
+	t_ray ray;
+
+	ft_bzero(ram->render->hits, ram->display->fps_img->w * sizeof(t_hit));
+	i = 0;
+	while (i < ram->display->fps_img->w)
+	{
+		ray.pos = ram->world->player.pos;
+		ray.degrees = normalize_degrees(ram->world->player.degrees -
+			((float)i * 2.0 / ram->display->fps_img->w - 1.0) * H_FOV / 2.0);
+		(ram->render->hits)[i] = raycast(ram, ray);
+		++i;
+	}
+}
+
 void render_each_ray(t_ram *ram, t_image *img)
 {
 	int i;
@@ -116,7 +114,6 @@ int render_scene(t_ram *ram)
 {
 	clear_img(ram->display->mlx_ptr, ram->display->fps_img);
 	draw_minimap(ram, ram->display->map_img);
-	// raycast_straight_col(ram);
 	raycast_each_col(ram);
 	render_each_col(ram, ram->display->fps_img);
 	render_each_ray(ram, ram->display->map_img);

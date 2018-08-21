@@ -19,7 +19,7 @@
 # define TRUE !FALSE
 
 # define TIMESLICE_US 16666
-# define FOV 40
+# define H_FOV 40.0
 # define MMAP_PXPM 20
 
 typedef struct		s_ram

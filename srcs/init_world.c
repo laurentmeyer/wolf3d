@@ -6,17 +6,32 @@
 
 void		fill_map(t_ram *ram, int y, char *line)
 {
-	int	x;
+	int		x;
+	char	c;
 
 	x = 0;
 	while (x < ram->world->map_w && '\0' != line[x])
 	{
-		if (0 == x || ram->world->map_w - 1 == x || 0 == y || ram->world->map_h - 1 == y)
-			ram->world->map[x + ram->world->map_w * y] = MAP_WALL;
+		if ('B' == line[x])
+			c = TEX_WALL_BLUE;
+		else if ('S' == line[x])
+			c = TEX_HITLER_STONE;
+		else if ('F' == line[x])
+			c = TEX_FLAG_NAZI;
+		else if ('P' == line[x])
+			c = TEX_PRISON_EMPTY;
+		else if ('D' == line[x])
+			c = TEX_PRISON_DEAD;
 		else
-			ram->world->map[x + ram->world->map_w * y] = (line[x] == 'W') ? MAP_WALL : MAP_EMPTY;
+			c = TEX_EMPTY;
+		if (TEX_EMPTY == c && (0 == x || ram->world->map_w - 1 == x || 0 == y
+			|| ram->world->map_h - 1 == y))
+			c = TEX_WALL_STONE;
+		ram->world->map[x + ram->world->map_w * y] = c;
 		++x;
 	}
+	while (x < ram->world->map_w)
+		ram->world->map[x++ + ram->world->map_w * y] = TEX_WALL_STONE;
 }
 
 void	get_map_dimensions(t_ram *ram, int fd)
@@ -76,7 +91,7 @@ void init_map(t_ram *ram, int fd)
 			fill_map(ram, y, line);
 		free(line);
 		if (0 == gnl)
-			break;
+			exit_message(ram, ERROR, "Line number is too high\n");
 		y++;
 	}
 }

@@ -21,6 +21,11 @@
 		"ft_math.h": "c",
 		"libft.h": "c",
 		"transform.h": "c",
-		"raycast.h": "c"
+		"raycast.h": "c",
+		"chrono": "c",
+		"limits": "c",
+		"algorithm": "c",
+		"string": "c",
+		"__bit_reference": "c"
 	}
 }

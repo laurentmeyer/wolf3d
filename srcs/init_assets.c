@@ -71,10 +71,10 @@ void	init_map_layout(t_ram *ram)
 		while (j < ram->world->map_w * MMAP_PXPM)
 		{
 			c = (ram->world->map)[ram->world->map_w * (i / MMAP_PXPM) + (j / MMAP_PXPM)];
-			if (MAP_WALL == c)
-				(ram->assets->map_layout)[ram->world->map_w * i * MMAP_PXPM + j] = 0x707070;
-			else if (MAP_EMPTY == c)
+			if (TEX_EMPTY == c)
 				(ram->assets->map_layout)[ram->world->map_w * i * MMAP_PXPM + j] = 0x383838;
+			else
+				(ram->assets->map_layout)[ram->world->map_w * i * MMAP_PXPM + j] = 0x707070;
 			j++;
 		}
 		i++;
