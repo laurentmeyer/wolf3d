@@ -24,7 +24,7 @@ static int key_release(int keycode, t_ram *ram)
 // 	const float	epsilon = 0.1;
 
 // 	dst = translate(ram->world->player, (t_v2){move.x + epsilon, move.y});
-// 	if (MAP_EMPTY == (ram->world->map)[(int)(dst.pos.y) * ram->world->map_w + (int)(dst.pos.x)])
+// 	if (TEX_EMPTY == (ram->world->map)[(int)(dst.pos.y) * ram->world->map_w + (int)(dst.pos.x)])
 // 		return (translate(ram->world->player, move).pos);
 // 	dst = translate(ram->world->player, move);
 // 	player = (t_v2i){(int)(ram->world->player.pos.x), (int)(ram->world->player.pos.y)};
@@ -70,7 +70,7 @@ t_v2	legal_move(t_ram *ram, t_v2 move)
 // 	t_transform origin;
 
 // 	origin = translate(ram->world->player, move);
-// 	if (MAP_EMPTY == (ram->world->map)[(int)(origin.pos.y) * ram->world->map_w + (int)(origin.pos.x)])
+// 	if (TEX_EMPTY == (ram->world->map)[(int)(origin.pos.y) * ram->world->map_w + (int)(origin.pos.x)])
 // 		return (origin.pos);
 // 	return (ram->world->player.pos);
 // }

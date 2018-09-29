@@ -6,7 +6,7 @@
 /*   By: lmeyer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 11:40:14 by lmeyer            #+#    #+#             */
-/*   Updated: 2017/10/14 11:40:26 by lmeyer           ###   ########.fr       */
+/*   Updated: 2018/09/28 20:31:42 by lmeyer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ static int	read_buf(char buf[BUFF_SIZE + 2], int fd, char **start)
 ** il est possible que ce soit pour renvoyer 0 en cas de fin de lecture ?
 */
 
-int gnlite(const int fd, char **line)
+int			gnlite(const int fd, char **line)
 {
 	static char buf[BUFF_SIZE + 2] = {'\0'};
 	static char *start = buf;
-	char *next;
-	int r;
+	char		*next;
+	int			r;
 
 	if (!line || !(*line = ft_strdup("")))
 		return (ERR);
