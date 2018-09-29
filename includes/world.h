@@ -7,13 +7,22 @@
 
 # define TEX_EMPTY -2
 # define TEX_WALL_STONE 0
+# define TEX_WALL_STONE_2 2
 # define TEX_FLAG_NAZI 4
 # define TEX_HITLER_STONE 6
 # define TEX_PRISON_EMPTY 8
 # define TEX_PRISON_DEAD 12
 # define TEX_WALL_BLUE 14
+# define TEX_WALL_BLUE_2 16
+# define TEX_NAZI_CUP 18
 # define TEX_HITLER_WOOD 20
 # define TEX_WALL_WOOD 22
+# define TEX_METAL_DOOR 24
+# define TEX_VERBOTEN_DOOR 26
+# define TEX_BLUE_METAL_DOOR 28
+# define TEX_RED_STONE_WALL 32
+# define TEX_RED_STONE_NAZI_WALL 34
+# define TEX_FUHRER_PORTRAIT 95
 
 typedef struct		s_world
 {

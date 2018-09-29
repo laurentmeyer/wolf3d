@@ -24,7 +24,8 @@ SRCFILES =					\
 			render.c		\
 			timer.c			\
 			transform.c		\
-			world.c
+			world.c			\
+			fill_map.c	\
 
 LIBS =		ft						\
 			mlx

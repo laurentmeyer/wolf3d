@@ -57,6 +57,7 @@ int					render_scene(t_ram *ram);
 t_hit				raycast(t_ram *ram, t_ray ray);
 void				trace_line(t_image *img, t_v2i a, t_v2i b, int color);
 void				exit_message(t_ram *ram, int exit_code, char *message);
+void				fill_map(t_ram *ram, int y, char *line);
 
 
 #endif
