@@ -103,7 +103,7 @@ void init_world(t_ram *ram)
 	if (NULL == (ram->world = (t_world *)malloc(sizeof(t_world))))
 		exit_message(ram, ERROR, "Could not allocate world\n");
 	ft_bzero(ram->world, sizeof(t_world));
-	if (ERROR == (fd = open("test.map", O_RDONLY)))
+	if (ERROR == (fd = open(ram->file_name, O_RDONLY)))
 		exit_message(ram, ERROR, "Could not open map file\n");
 	init_map(ram, fd);
 	close(fd);

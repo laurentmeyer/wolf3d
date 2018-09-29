@@ -30,10 +30,12 @@ typedef struct		s_ram
 	t_world			*world;
 	t_assets		*assets;
 	t_render		*render;
+
+	char			*file_name;
 }					t_ram;
 
 int					main_loop(t_ram *ram);
-t_ram				*init_ram(void);
+t_ram				*init_ram(char *file_name);
 void				free_ram(t_ram *ram);
 void				init_assets(t_ram *ram);
 void				free_assets(t_assets *assets);

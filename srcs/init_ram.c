@@ -1,12 +1,13 @@
 #include "wolf3d.h"
 
-t_ram	*init_ram(void)
+t_ram	*init_ram(char *file_name)
 {
 	t_ram *ram;
 
 	if (NULL == (ram = (t_ram *)malloc(sizeof(t_ram))))
 		exit_message(ram, ERROR, "Could not initialize RAM\n");
 	ft_bzero(ram, sizeof(t_ram));
+	ram->file_name = file_name;
 	init_world(ram);
 	init_display(ram);
 	init_assets(ram);
