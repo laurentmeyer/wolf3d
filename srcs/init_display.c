@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_display.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lcharvol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/29 17:36:11 by lcharvol          #+#    #+#             */
+/*   Updated: 2018/09/29 17:36:30 by lcharvol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 #include "display.h"
 #include "ft_mlx.h"
@@ -13,11 +25,13 @@ void		init_display(t_ram *ram)
 		exit_message(ram, ERROR, "Could not get mlx ptr\n");
 	ram->display = d;
 	if (NULL == (d->fps_win = init_window(d->mlx_ptr, WIN_W, WIN_H, WIN_NAME))
-		|| NULL == (d->map_win = init_window(d->mlx_ptr, MMAP_PXPM * ram->world->map_w,
+		|| NULL == (d->map_win = init_window(d->mlx_ptr, MMAP_PXPM *
+				ram->world->map_w,
 			MMAP_PXPM * ram->world->map_h, "minimap")))
 		exit_message(ram, ERROR, "Could not init windows\n");
 	if (NULL == (d->fps_img = init_image(d->mlx_ptr, WIN_W, WIN_H))
-		|| NULL == (d->map_img = init_image(d->mlx_ptr, MMAP_PXPM * ram->world->map_w,
+		|| NULL == (d->map_img = init_image(d->mlx_ptr, MMAP_PXPM *
+				ram->world->map_w,
 			MMAP_PXPM * ram->world->map_h)))
 		exit_message(ram, ERROR, "Could not init images\n");
 }
