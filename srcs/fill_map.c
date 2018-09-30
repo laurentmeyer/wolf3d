@@ -32,6 +32,10 @@ static char	get_texture(t_ram *ram, char *line, int x, int y)
 		c = TEX_RED_STONE_NAZI_WALL;
 	else if ('U' == line[x])
 		c = TEX_FUHRER_PORTRAIT;
+	else if ('W' == line[x])
+		c = TEX_WALL_WOOD;
+	else if ('I' == line[x])
+		c = TEX_ITEM;
 	else
 		c = TEX_EMPTY;
 	if (TEX_EMPTY == c && (0 == x || ram->world->map_w - 1 == x || 0 == y
@@ -43,13 +47,12 @@ static char	get_texture(t_ram *ram, char *line, int x, int y)
 void		fill_map(t_ram *ram, int y, char *line)
 {
 	int		x;
-	char	c;
 
 	x = 0;
 	while (x < ram->world->map_w && '\0' != line[x])
 	{
-		c = get_texture(ram, line, x, y);
-		ram->world->map[x + ram->world->map_w * y] = c;
+		ram->world->map[x + ram->world->map_w * y] =
+			get_texture(ram, line, x, y);
 		++x;
 	}
 	while (x < ram->world->map_w)

@@ -5,6 +5,9 @@
 # include "transform.h"
 # include "geometry.h"
 
+# define GROUND_COLOR 0x383838
+# define SKY_COLOR 0xff0000
+
 # define TEX_EMPTY -2
 # define TEX_WALL_STONE 0
 # define TEX_WALL_STONE_2 2
@@ -23,6 +26,8 @@
 # define TEX_RED_STONE_WALL 32
 # define TEX_RED_STONE_NAZI_WALL 34
 # define TEX_FUHRER_PORTRAIT 95
+
+# define TEX_ITEM 0
 
 typedef struct		s_world
 {

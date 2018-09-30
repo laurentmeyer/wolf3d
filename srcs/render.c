@@ -117,8 +117,8 @@ void					draw_minimap(t_ram *ram, t_image *img)
 
 void					clear_img(void *mlx_ptr, t_image *img)
 {
-	const unsigned int	ceiling = mlx_get_color_value(mlx_ptr, 0x383838);
-	const unsigned int	ground = mlx_get_color_value(mlx_ptr, 0x707070);
+	const unsigned int	ceiling = mlx_get_color_value(mlx_ptr, SKY_COLOR);
+	const unsigned int	ground = mlx_get_color_value(mlx_ptr, GROUND_COLOR);
 	const size_t		i = img->size_line * img->h / 2;
 
 	ft_memset(img->data_addr, ceiling, i);
