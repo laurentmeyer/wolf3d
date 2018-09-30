@@ -79,8 +79,8 @@ void	 apply_user_input(t_ram *ram)
 {
 	int			*k;
 	t_transform	*player;
-	const float	straight_step = 3.0 / 60;
-	const float	angle = 90.0 / 60;
+	const float	straight_step = MOVE_SPEED;
+	const float	angle = ROTATE_SPEED;
 
 	k = ram->input->keys_pressed;
 	player = &(ram->world->player);

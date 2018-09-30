@@ -3,6 +3,9 @@
 
 # include "geometry.h"
 
+# define MOVE_SPEED 0.1
+# define ROTATE_SPEED 2
+
 typedef struct	s_transform
 {
 	t_v2		pos;
