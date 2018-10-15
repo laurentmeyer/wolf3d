@@ -70,5 +70,8 @@ t_hit				raycast(t_ram *ram, t_ray ray);
 void				trace_line(t_image *img, t_v2i a, t_v2i b, int color);
 void				exit_message(t_ram *ram, int exit_code, char *message);
 void				fill_map(t_ram *ram, int y, char *line);
+void				raycast_straight_col(t_ram *ram);
+void				scale_tex(int height, int *dst, int *src);
+void				render_each_col(t_ram *ram, t_image *img);
 
 #endif

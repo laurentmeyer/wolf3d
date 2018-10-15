@@ -22,6 +22,7 @@ SRCFILES =					\
 			math.c			\
 			raycast.c		\
 			render.c		\
+			render_aux.c 	\
 			timer.c			\
 			transform.c		\
 			world.c			\
