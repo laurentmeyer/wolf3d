@@ -15,14 +15,6 @@
 #include "raycast.h"
 #include "ft_math.h"
 
-float		projected_distance(t_ram *ram, t_v2 pos)
-{
-	return ((pos.x - ram->world->player.pos.x) * cos(ram->world->player.degrees
-				* DEG_TO_RAD)
-		- (pos.y - ram->world->player.pos.y) * sin(ram->world->player.degrees
-			* DEG_TO_RAD));
-}
-
 t_hit		raycast_horizontal_south(t_ram *ram, t_ray ray)
 {
 	float	opp;

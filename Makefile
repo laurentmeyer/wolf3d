@@ -26,7 +26,8 @@ SRCFILES =					\
 			timer.c			\
 			transform.c		\
 			world.c			\
-			fill_map.c	\
+			fill_map.c		\
+			utils.c 		\
 
 LIBS =		ft						\
 			mlx
