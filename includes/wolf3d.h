@@ -73,5 +73,9 @@ void				fill_map(t_ram *ram, int y, char *line);
 void				raycast_straight_col(t_ram *ram);
 void				scale_tex(int height, int *dst, int *src);
 void				render_each_col(t_ram *ram, t_image *img);
+float				projected_distance(t_ram *ram, t_v2 pos);
+char				get_tex(t_ram *ram, float x, float y);
+int					key_release(int keycode, t_ram *ram);
+int					key_press(int keycode, t_ram *ram);
 
 #endif

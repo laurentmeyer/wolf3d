@@ -17,23 +17,6 @@
 #include <unistd.h>
 #include <math.h>
 
-static int		key_press(int keycode, t_ram *ram)
-{
-	ram->input->keys_pressed[keycode] = 1;
-	return (1);
-}
-
-static int		key_release(int keycode, t_ram *ram)
-{
-	ram->input->keys_pressed[keycode] = 0;
-	return (1);
-}
-
-char			get_tex(t_ram *ram, float x, float y)
-{
-	return ((ram->world->map)[(int)y * ram->world->map_w + (int)x]);
-}
-
 t_v2			legal_move(t_ram *ram, t_v2 move)
 {
 	t_transform	dst;
