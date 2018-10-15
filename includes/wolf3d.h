@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wolf3d.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lcharvol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/15 12:46:07 by lcharvol          #+#    #+#             */
+/*   Updated: 2018/10/15 12:46:57 by lcharvol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef WOLF3D_H
 # define WOLF3D_H
 # include "mlx.h"
@@ -49,15 +61,14 @@ void				init_timer(t_ram *ram);
 void				free_timer(t_timer *timer);
 void				init_world(t_ram *ram);
 void				free_world(t_world *world);
-void				print_map(t_ram *ram); //
+void				print_map(t_ram *ram);
 int					init_hooks(t_ram *ram);
 void				apply_user_input(t_ram *ram);
-void 				pixel_put(t_image *img, int x, int y, unsigned int color);
+void				pixel_put(t_image *img, int x, int y, unsigned int color);
 int					render_scene(t_ram *ram);
 t_hit				raycast(t_ram *ram, t_ray ray);
 void				trace_line(t_image *img, t_v2i a, t_v2i b, int color);
 void				exit_message(t_ram *ram, int exit_code, char *message);
 void				fill_map(t_ram *ram, int y, char *line);
-
 
 #endif
