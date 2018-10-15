@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lcharvol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/15 13:04:11 by lcharvol          #+#    #+#             */
+/*   Updated: 2018/10/15 13:08:24 by lcharvol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 #include "input.h"
 #include "mlx.h"
@@ -5,55 +17,27 @@
 #include <unistd.h>
 #include <math.h>
 
-static int key_press(int keycode, t_ram *ram)
+static int		key_press(int keycode, t_ram *ram)
 {
 	ram->input->keys_pressed[keycode] = 1;
 	return (1);
 }
 
-static int key_release(int keycode, t_ram *ram)
+static int		key_release(int keycode, t_ram *ram)
 {
 	ram->input->keys_pressed[keycode] = 0;
 	return (1);
 }
 
-// t_v2	legal_move(t_ram *ram, t_v2 move)
-// {
-// 	t_transform	dst;
-// 	t_v2i		player;
-// 	const float	epsilon = 0.1;
-
-// 	dst = translate(ram->world->player, (t_v2){move.x + epsilon, move.y});
-// 	if (TEX_EMPTY == (ram->world->map)[(int)(dst.pos.y) * ram->world->map_w + (int)(dst.pos.x)])
-// 		return (translate(ram->world->player, move).pos);
-// 	dst = translate(ram->world->player, move);
-// 	player = (t_v2i){(int)(ram->world->player.pos.x), (int)(ram->world->player.pos.y)};
-// 	if ((int)(dst.pos.x) != (int)(player.x))
-// 		dst.pos.x = ((int)(dst.pos.x) > player.x) ? (int)(dst.pos.x) : player.x;
-// 	if (dst.pos.y != player.y)
-// 		dst.pos.y = ((int)(dst.pos.y) > player.y) ? (int)(dst.pos.y) : player.y;
-// 	if (dst.pos.x - (int)(dst.pos.x) < epsilon)
-// 		dst.pos.x = (int)(dst.pos.x) + epsilon;
-// 	if ((int)(dst.pos.x) + 1.0 - dst.pos.x < epsilon)
-// 		dst.pos.x = (int)(dst.pos.x) + 1.0 - epsilon;
-// 	if (dst.pos.y - (int)(dst.pos.y) < epsilon)
-// 		dst.pos.y = (int)(dst.pos.y) + epsilon;
-// 	if ((int)(dst.pos.y) + 1.0 - dst.pos.y < epsilon)
-// 		dst.pos.y = (int)(dst.pos.y) + 1.0 - epsilon;
-// 	return (dst.pos);
-// }
-
-char	get_tex(t_ram *ram, float x, float y)
+char			get_tex(t_ram *ram, float x, float y)
 {
 	return ((ram->world->map)[(int)y * ram->world->map_w + (int)x]);
 }
 
-t_v2	legal_move(t_ram *ram, t_v2 move)
+t_v2			legal_move(t_ram *ram, t_v2 move)
 {
 	t_transform	dst;
-	// t_v2i		hit;
 	t_v2		res;
-	// const float	epsilon = 0.1;
 
 	res = ram->world->player.pos;
 	dst = translate(ram->world->player, move);
@@ -65,17 +49,7 @@ t_v2	legal_move(t_ram *ram, t_v2 move)
 	return (res);
 }
 
-// t_v2 legal_move(t_ram *ram, t_v2 move)
-// {
-// 	t_transform origin;
-
-// 	origin = translate(ram->world->player, move);
-// 	if (TEX_EMPTY == (ram->world->map)[(int)(origin.pos.y) * ram->world->map_w + (int)(origin.pos.x)])
-// 		return (origin.pos);
-// 	return (ram->world->player.pos);
-// }
-
-void	 apply_user_input(t_ram *ram)
+void			apply_user_input(t_ram *ram)
 {
 	int			*k;
 	t_transform	*player;
@@ -96,12 +70,16 @@ void	 apply_user_input(t_ram *ram)
 		rotate(player, angle);
 }
 
-int init_hooks(t_ram *ram)
+int				init_hooks(t_ram *ram)
 {
-	mlx_hook(ram->display->map_win->win_ptr, KEY_PRESS_EVENT, KEY_PRESS_MASK, &key_press, ram);
-	mlx_hook(ram->display->map_win->win_ptr, KEY_RELEASE_EVENT, KEY_RELEASE_MASK, &key_release, ram);
-	mlx_hook(ram->display->fps_win->win_ptr, KEY_PRESS_EVENT, KEY_PRESS_MASK, &key_press, ram);
-	mlx_hook(ram->display->fps_win->win_ptr, KEY_RELEASE_EVENT, KEY_RELEASE_MASK, &key_release, ram);
+	mlx_hook(ram->display->map_win->win_ptr,
+			KEY_PRESS_EVENT, KEY_PRESS_MASK, &key_press, ram);
+	mlx_hook(ram->display->map_win->win_ptr,
+			KEY_RELEASE_EVENT, KEY_RELEASE_MASK, &key_release, ram);
+	mlx_hook(ram->display->fps_win->win_ptr,
+			KEY_PRESS_EVENT, KEY_PRESS_MASK, &key_press, ram);
+	mlx_hook(ram->display->fps_win->win_ptr,
+			KEY_RELEASE_EVENT, KEY_RELEASE_MASK, &key_release, ram);
 	mlx_loop_hook(ram->display->mlx_ptr, &main_loop, ram);
 	return (SUCCESS);
 }

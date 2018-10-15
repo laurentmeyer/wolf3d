@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_ram.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lcharvol <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/15 12:48:45 by lcharvol          #+#    #+#             */
+/*   Updated: 2018/10/15 12:49:14 by lcharvol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
 t_ram	*init_ram(char *file_name)
@@ -14,7 +26,6 @@ t_ram	*init_ram(char *file_name)
 	init_input(ram);
 	init_render(ram);
 	init_hooks(ram);
-	// print_map(ram); //
 	init_timer(ram);
 	return (ram);
 }

@@ -6,13 +6,13 @@
 /*   By: lcharvol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/29 19:22:18 by lcharvol          #+#    #+#             */
-/*   Updated: 2018/09/29 19:22:40 by lcharvol         ###   ########.fr       */
+/*   Updated: 2018/10/15 13:59:06 by lcharvol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static char	get_texture(t_ram *ram, char *line, int x, int y)
+static char	get_texture_aux(char *line, int x)
 {
 	char	c;
 
@@ -38,6 +38,14 @@ static char	get_texture(t_ram *ram, char *line, int x, int y)
 		c = TEX_ITEM;
 	else
 		c = TEX_EMPTY;
+	return (c);
+}
+
+static char	get_texture(t_ram *ram, char *line, int x, int y)
+{
+	char	c;
+
+	c = get_texture_aux(line, x);
 	if (TEX_EMPTY == c && (0 == x || ram->world->map_w - 1 == x || 0 == y
 		|| ram->world->map_h - 1 == y))
 		c = TEX_WALL_STONE;
