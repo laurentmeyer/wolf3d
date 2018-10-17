@@ -29,7 +29,7 @@ static char	get_texture_aux(char *line, int x)
 	else if ('T' == line[x])
 		c = TEX_RED_STONE_WALL;
 	else if ('R' == line[x])
-		c = TEX_RED_STONE_NAZI_WALL;
+		c = TEX_WALL_STONE;
 	else if ('U' == line[x])
 		c = TEX_FUHRER_PORTRAIT;
 	else if ('W' == line[x])

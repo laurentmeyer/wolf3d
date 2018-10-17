@@ -1,22 +1,22 @@
-20 20
+40 20
 5 5 0
-WWWWWWWWWRWWWWWWWWWW
-W                  W
-W                  W
-W                  W
-W                  W
-W                  W
-W        B         W
-W        B         W
-W        B         W
-W        R         W
-W        B         W
-W        B         W
-W        B         W
-WBBBBBBBBB         W
-W        B         W
-W        B         W
-W        R         W
-W        B         W
-U                  W
-WWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+W                  W                   W
+W   R    R    R    W     R    R    R   W
+W                                      D
+W                                      D
+W                  W     R    R    R   W
+W        W         W                   W
+W      W W W       WWWWWWWWWWWWWW   WWWW
+W        W                    B        B
+W        RRRDRRRDRRR          B        B
+W        R         R          B        B
+W        D         D         WB        B
+W        R         R          B        B
+WWWWWWWWWR                    B        B
+B                  R          B        B
+B        RRRDRRRDRRRBBBBBBBBBBB        B
+B        B    W                        B
+B        B                             B
+U                  W                   B 
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB

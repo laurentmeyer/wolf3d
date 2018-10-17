@@ -17,8 +17,8 @@
 # include "transform.h"
 # include "geometry.h"
 
-# define GROUND_COLOR 0x383838
-# define SKY_COLOR 0xff0000
+# define GROUND_COLOR 0x737373
+# define SKY_COLOR 0x383838
 
 # define TEX_EMPTY -2
 # define TEX_WALL_STONE 0
