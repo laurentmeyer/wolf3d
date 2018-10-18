@@ -49,17 +49,21 @@ CCFRAMEWORKS = -framework AppKit -framework OpenGL
 SOURCES = $(SRCFILES:%.c=$(SOURCEDIR)/%.c)
 OBJECTS = $(SOURCES:$(SOURCEDIR)/%.c=$(BUILDDIR)/%.o)
 
-.PHONY: all clean fclean re
+.PHONY: clean fclean all re norme newline $(LIBFT)/libft.a
 
 all : $(BINARY)
 
+newline:
+		@echo "\033[38;5;166m\033[0m\n"
+
 $(BINARY) : $(OBJECTS)
-	$(MAKE) -C $(LIBFT)
-	$(MAKE) -C $(MINILIB)
-	$(CC) $(CCHEADERS) $(CCLIBS) $(OBJECTS) $(CCFRAMEWORKS) -o $(BINARY)
+	make -C $(LIBFT)
+	make -C $(MINILIB)
+	@$(CC) $(CCHEADERS) $(CCLIBS) $(OBJECTS) $(CCFRAMEWORKS) -o $(BINARY)
 
 $(BUILDDIR)/%.o : $(SOURCEDIR)/%.c
-	@mkdir -p $(@D)
+	echo "\033[1A\033[K\033[38;5;226mmaking $@\033[0m"
+	mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(CCHEADERS) -c $< -o $@
 
 clean:
@@ -72,3 +76,6 @@ fclean: clean
 	rm -f $(BINARY)
 
 re: fclean all
+
+norme: newline
+		norminette $(SOURCES) includes

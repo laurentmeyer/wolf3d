@@ -31,6 +31,8 @@ void		get_map_dimensions(t_ram *ram, int fd)
 				must be ints\n");
 	ram->world->map_w = ft_atoi(split[0]);
 	ram->world->map_h = ft_atoi(split[1]);
+	if(ram->world->map_w < 4 || ram->world->map_h < 4)
+		exit_message(ram, ERROR, "Wrong map size (min 4)\n");
 	ft_free_strsplit(&split);
 	free(line);
 }
@@ -53,6 +55,10 @@ void		get_player_coords(t_ram *ram, int fd)
 	ram->world->player.pos.x = ft_atoi(split[0]);
 	ram->world->player.pos.y = ft_atoi(split[1]);
 	ram->world->player.degrees = (float)ft_atoi(split[2]);
+	if(ram->world->player.pos.x < 2 || ram->world->player.pos.y < 2 ||
+		ram->world->player.pos.x >= (ram->world->map_w - 1) ||
+		ram->world->player.pos.y >= (ram->world->map_h - 1))
+		exit_message(ram, ERROR, "Player position out of bounds\n");
 	ft_free_strsplit(&split);
 	free(line);
 }

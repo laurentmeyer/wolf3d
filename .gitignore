@@ -1,3 +1,5 @@
 *.o
-*.a
+*.ia
+.vscode
+.DS_Store
 wolf3d
